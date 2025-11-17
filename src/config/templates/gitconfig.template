@@ -1,0 +1,130 @@
+# ═══════════════════════════════════════════════════════════════════════════
+# Git Configuration Template
+# ═══════════════════════════════════════════════════════════════════════════
+
+[user]
+    name = SEU_NOME
+    email = seu.email@exemplo.com
+
+[init]
+    defaultBranch = main
+
+[core]
+    editor = nano
+    autocrlf = input
+    eol = lf
+    # Melhor performance no WSL
+    preloadindex = true
+    fscache = true
+
+[pull]
+    rebase = false
+
+[push]
+    default = simple
+    followTags = true
+
+[fetch]
+    prune = true
+
+[merge]
+    ff = false
+    conflictstyle = diff3
+
+[diff]
+    algorithm = histogram
+    colorMoved = default
+
+[rebase]
+    autoStash = true
+    autoSquash = true
+
+[alias]
+    # Status
+    st = status -sb
+    
+    # Log
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    
+    # Commit
+    cm = commit -m
+    ca = commit --amend
+    
+    # Branch
+    br = branch
+    co = checkout
+    cob = checkout -b
+    
+    # Diff
+    df = diff
+    dfc = diff --cached
+    
+    # Push/Pull
+    ps = push
+    pl = pull
+    
+    # Stash
+    st = stash
+    stp = stash pop
+    
+    # Undo
+    undo = reset HEAD~1 --mixed
+    unstage = reset HEAD --
+    
+    # Show last commit
+    last = log -1 HEAD --stat
+    
+    # List aliases
+    aliases = config --get-regexp alias
+
+[color]
+    ui = true
+    branch = auto
+    diff = auto
+    status = auto
+
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+
+[color "diff"]
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+
+[color "status"]
+    added = yellow
+    changed = green
+    untracked = cyan
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Performance (WSL)
+# ═══════════════════════════════════════════════════════════════════════════
+[core]
+    # Ler configuração somente uma vez
+    untrackedCache = true
+    # Otimizar operações de arquivo
+    checkStat = minimal
+    
+[gc]
+    auto = 256
+    
+[feature]
+    manyFiles = true
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Security
+# ═══════════════════════════════════════════════════════════════════════════
+[credential]
+    helper = cache --timeout=3600
+
+[http]
+    sslVerify = true
+
+# ═══════════════════════════════════════════════════════════════════════════
+# GitHub Specific
+# ═══════════════════════════════════════════════════════════════════════════
+[url "git@github.com:"]
+    insteadOf = https://github.com/

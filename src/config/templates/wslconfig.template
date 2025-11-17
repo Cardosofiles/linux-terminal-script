@@ -1,0 +1,101 @@
+# ═══════════════════════════════════════════════════════════════════════════
+# .wslconfig - Configuração WSL 2
+# Salve este arquivo em: C:\Users\<SEU_USUARIO>\.wslconfig
+#
+# Após modificar, reinicie o WSL: wsl --shutdown
+# ═══════════════════════════════════════════════════════════════════════════
+
+[wsl2]
+# ────────────────────────────────────────────────────────────────────────────
+# Memória
+# ────────────────────────────────────────────────────────────────────────────
+# Limite de memória RAM para WSL 2
+# Recomendado: 50-70% da RAM total
+# Exemplos:
+#   - 8GB RAM total  → memory=4GB
+#   - 16GB RAM total → memory=8GB
+#   - 32GB RAM total → memory=16GB
+memory=8GB
+
+# ────────────────────────────────────────────────────────────────────────────
+# Processadores
+# ────────────────────────────────────────────────────────────────────────────
+# Número de processadores lógicos
+# Recomendado: 50-75% dos cores disponíveis
+processors=4
+
+# ────────────────────────────────────────────────────────────────────────────
+# Swap
+# ────────────────────────────────────────────────────────────────────────────
+# Tamanho do arquivo de swap
+# Recomendado: 25% da memória alocada
+swap=2GB
+
+# Local do arquivo de swap (opcional)
+# swapFile=C:\\Users\\SEU_USUARIO\\WSL\\swap.vhdx
+
+# ────────────────────────────────────────────────────────────────────────────
+# Rede (Windows 11 23H2+)
+# ────────────────────────────────────────────────────────────────────────────
+# Modo de rede espelhado (melhor compatibilidade)
+# Disponível apenas no Windows 11 versão 23H2 ou superior
+# networkingMode=mirrored
+
+# DNS tunneling
+# dnsTunneling=true
+
+# Firewall
+# firewall=true
+
+# Auto proxy
+# autoProxy=true
+
+# ────────────────────────────────────────────────────────────────────────────
+# Performance
+# ────────────────────────────────────────────────────────────────────────────
+# Localizar nome de host WSL
+localhostForwarding=true
+
+# Desabilitar cache de página
+# pageReporting=false
+
+# ────────────────────────────────────────────────────────────────────────────
+# Kernel
+# ────────────────────────────────────────────────────────────────────────────
+# Caminho customizado do kernel (opcional)
+# kernel=C:\\Users\\SEU_USUARIO\\bzImage
+
+# Parâmetros do kernel (opcional)
+# kernelCommandLine=
+
+# ────────────────────────────────────────────────────────────────────────────
+# Debug
+# ────────────────────────────────────────────────────────────────────────────
+# Desabilitar output de debug
+# debugConsole=false
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Configurações por Distribuição
+# ═══════════════════════════════════════════════════════════════════════════
+
+[experimental]
+# Modo de rede espelhado (experimental)
+# networkingMode=mirrored
+
+# Sparse VHD
+# sparseVhd=true
+
+# ═══════════════════════════════════════════════════════════════════════════
+# NOTAS IMPORTANTES
+# ═══════════════════════════════════════════════════════════════════════════
+#
+# 1. Após modificar, execute no PowerShell: wsl --shutdown
+# 2. Ajuste os valores conforme seu hardware
+# 3. Valores muito altos podem degradar performance do Windows
+# 4. Valores muito baixos podem limitar performance do WSL
+# 5. Monitore uso com: Task Manager → Performance → Memory
+#
+# Mais informações:
+# https://learn.microsoft.com/windows/wsl/wsl-config
+#
+# ═══════════════════════════════════════════════════════════════════════════

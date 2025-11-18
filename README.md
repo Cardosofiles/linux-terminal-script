@@ -147,8 +147,8 @@ wsl --install -d Ubuntu
 ```bash
 mkdir -p ~/bin
 cd ~/bin
-git clone https://github.com/Cardosofiles/linux-terminal-settings.git
-cd linux-terminal-settings
+git clone https://github.com/Cardosofiles/linux-terminal-script.git
+cd linux-terminal-script
 ```
 
 ### 2. Dar Permissões de Execução

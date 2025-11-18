@@ -4,6 +4,8 @@
 
 > **Instalação idempotente, com rollback automático e snapshots para ambiente Full Stack**
 
+[![Version](https://img.shields.io/badge/Version-1.0.1-blue?style=for-the-badge)](CHANGELOG.md)
+[![Status](https://img.shields.io/badge/Status-Production%20Ready-success?style=for-the-badge)](TESTING.md)
 [![Ambiente de Desenvolvimento](https://img.shields.io/badge/Ambiente-Desenvolvimento-6C63FF?style=for-the-badge)](#features)
 [![Idempotente](https://img.shields.io/badge/Idempotente-100%25-success?style=for-the-badge)](#arquitetura)
 [![Rollback](https://img.shields.io/badge/Rollback-Automático-orange?style=for-the-badge)](#sistema-de-rollback)
@@ -53,6 +55,8 @@ Sistema enterprise-grade com instalação modular, snapshots WSL, rollback compl
 - ✅ **Logging Estruturado** - Rastreamento completo de todas as operações
 - ✅ **Estado Persistente** - Sabe exatamente o que está instalado
 - ✅ **Backup Automático** - Arquivos modificados são salvos antes de alterações
+
+> 🎉 **Versão 1.0.1** - Bug crítico de variável readonly corrigido! [Ver detalhes](CHANGELOG.md)
 
 ### 🖥️ Terminal & Shell
 

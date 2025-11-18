@@ -7,7 +7,28 @@
 set -euo pipefail
 
 # Configurações
-readonly SNAPSHOT_DIR="/mnt/c/WSL-Snapshots"
+# Tenta C:\WSL-Snapshots, se falhar usa o diretório do usuário
+SNAPSHOT_DIR_DEFAULT="/mnt/c/WSL-Snapshots"
+SNAPSHOT_DIR_USER="/mnt/c/Users/${USER}/WSL-Snapshots"
+
+# Detecta o usuário Windows correto
+if [[ -d "/mnt/c/Users" ]]; then
+    WIN_USER=$(ls -1 /mnt/c/Users | grep -v "Public\|Default\|All Users" | head -n1)
+    SNAPSHOT_DIR_USER="/mnt/c/Users/${WIN_USER}/WSL-Snapshots"
+fi
+
+# Tenta criar no C:\ primeiro, se falhar usa usuário
+if mkdir -p "$SNAPSHOT_DIR_DEFAULT" 2>/dev/null && [[ -w "$SNAPSHOT_DIR_DEFAULT" ]]; then
+    readonly SNAPSHOT_DIR="$SNAPSHOT_DIR_DEFAULT"
+else
+    readonly SNAPSHOT_DIR="$SNAPSHOT_DIR_USER"
+    mkdir -p "$SNAPSHOT_DIR" 2>/dev/null || {
+        echo "Erro: Sem permissão para criar diretório de snapshots"
+        echo "Tente executar com: --skip-snapshot"
+        exit 1
+    }
+fi
+
 readonly DISTRO_NAME="Ubuntu"
 readonly TIMESTAMP=$(date +%Y%m%d-%H%M%S)
 readonly SNAPSHOT_NAME="${DISTRO_NAME}-snapshot-${TIMESTAMP}"
@@ -40,6 +61,8 @@ create_snapshot_dir() {
     if [[ ! -d "$SNAPSHOT_DIR" ]]; then
         mkdir -p "$SNAPSHOT_DIR"
         log_info "Diretório de snapshots criado: $SNAPSHOT_DIR"
+    else
+        log_info "Usando diretório: $SNAPSHOT_DIR"
     fi
 }
 

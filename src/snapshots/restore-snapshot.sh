@@ -5,7 +5,19 @@
 
 set -euo pipefail
 
-readonly SNAPSHOT_DIR="/mnt/c/WSL-Snapshots"
+# Detecta diretório de snapshots
+SNAPSHOT_DIR_DEFAULT="/mnt/c/WSL-Snapshots"
+WIN_USER=$(ls -1 /mnt/c/Users 2>/dev/null | grep -v "Public\|Default\|All Users" | head -n1)
+SNAPSHOT_DIR_USER="/mnt/c/Users/${WIN_USER}/WSL-Snapshots"
+
+if [[ -d "$SNAPSHOT_DIR_DEFAULT" ]]; then
+    SNAPSHOT_DIR="$SNAPSHOT_DIR_DEFAULT"
+elif [[ -d "$SNAPSHOT_DIR_USER" ]]; then
+    SNAPSHOT_DIR="$SNAPSHOT_DIR_USER"
+else
+    SNAPSHOT_DIR="$SNAPSHOT_DIR_DEFAULT"
+fi
+
 readonly GREEN='\033[0;32m'
 readonly BLUE='\033[0;34m'
 readonly RED='\033[0;31m'

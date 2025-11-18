@@ -45,7 +45,7 @@ declare -A COMPONENTS=(
 )
 
 declare -a MINIMAL_INSTALL=("system" "zsh" "powerlevel10k" "plugins" "fzf")
-declare -a FULL_INSTALL=("${!COMPONENTS[@]}")
+declare -a FULL_INSTALL=("system" "zsh" "powerlevel10k" "plugins" "fzf" "nodejs" "java" "php" "dotnet" "docker" "extras")
 
 #=============================================================================
 # Funções de Instalação
@@ -79,8 +79,14 @@ install_components() {
     local total=${#components[@]}
     local current=0
     
+    echo ""
+    log_info "Iniciando instalação de $total componentes..."
+    echo ""
+    
     for component in "${components[@]}"; do
         ((current++))
+        echo ""
+        log_info "[$current/$total] Processando: $component"
         show_progress $current $total
         echo ""
         

@@ -3,7 +3,10 @@
 # rollback.sh - Sistema de reversão de instalação
 #=============================================================================
 
-source "$(dirname "${BASH_SOURCE[0]}")/core.sh"
+# Não recarregar core.sh se já foi carregado
+if [[ -z "${CORE_SH_LOADED:-}" ]]; then
+    source "$(dirname "${BASH_SOURCE[0]}")/core.sh"
+fi
 
 #=============================================================================
 # Rollback Automático

@@ -4,7 +4,10 @@
 # Baseado em: https://arslan.io/2019/07/03/how-to-write-idempotent-bash-scripts
 #=============================================================================
 
-source "$(dirname "${BASH_SOURCE[0]}")/core.sh"
+# Não recarregar core.sh se já foi carregado
+if [[ -z "${CORE_SH_LOADED:-}" ]]; then
+    source "$(dirname "${BASH_SOURCE[0]}")/core.sh"
+fi
 
 #=============================================================================
 # Instalação de Pacotes APT (Idempotente)

@@ -15,7 +15,11 @@ readonly BLUE='\033[0;34m'
 readonly NC='\033[0m' # No Color
 
 # Diretórios
-readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+# Define SCRIPT_DIR apenas se ainda não foi definido
+if [[ -z "${SCRIPT_DIR:-}" ]]; then
+    SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+    readonly SCRIPT_DIR
+fi
 readonly LOG_DIR="$HOME/.wsl-setup/logs"
 readonly STATE_DIR="$HOME/.wsl-setup/state"
 readonly BACKUP_DIR="$HOME/.wsl-setup/backups"
@@ -225,3 +229,6 @@ export -f log log_info log_success log_warning log_error log_section
 export -f mark_installed is_installed get_installed_version unmark_installed
 export -f command_exists is_wsl check_internet is_ubuntu
 export -f backup_file confirm show_progress
+
+# Marcar que core.sh foi carregado
+readonly CORE_SH_LOADED=1
